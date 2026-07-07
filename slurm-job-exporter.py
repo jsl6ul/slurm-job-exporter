@@ -475,7 +475,8 @@ per elapsed cycle)',
                             continue
                 processes += 1
 
-                for t in p.threads():
+                # Enumerate only up to the first 1000 threads to avoid potential timeouts
+                for t in p.threads()[:1000]:
                     try:
                         pt = psutil.Process(t.id)
                         pt_status = pt.status()
